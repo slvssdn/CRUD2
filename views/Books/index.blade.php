@@ -31,48 +31,47 @@
         class="text-blue-700 hover:text-white border border-blue-600 bg-white hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:bg-gray-900 dark:focus:ring-blue-800">All
         categories</button>
       <button type="button"
-        class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">Shoes</button>
+        class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">Action</button>
       <button type="button"
-        class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">Bags</button>
+        class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">Drama</button>
       <button type="button"
-        class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">Electronics</button>
+        class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">Comedy</button>
       <button type="button"
-        class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">Gaming</button>
+        class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">Horror</button>
     </div>
 
     <div class="flex items-center justify-center py-4 md:py-8 flex-wrap">
-      <a href="{{ route('books.create') }}"
+      <a href="{{ route('movies.create') }}"
         class="text-white hover:text-white border border-blue-600 bg-blue-700 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:bg-gray-900 dark:focus:ring-blue-800">Create
-        Book</a>
+        Movie</a>
     </div>
   </div>
   <div class="grid grid-cols-2 md:grid-cols-3 gap-4 px-20">
-    @forelse ($books as $book)
+    @forelse ($movies as $movie)
     
     <div class="relative bg-white border border-gray-200 rounded-lg shadow overflow-hidden">
       <a href="#">
-      <img class="h-auto max-w-full rounded-lg" src="{{ asset('storage/' . $book->image) }}" alt="">
+      <img class="h-auto max-w-full rounded-lg" src="{{ asset('storage/' . $movie->image) }}" alt="Movie Poster">
       </a>
       <div class="absolute top-0 flex justify-between w-full">
-        <p class="bg-white px-3 py-2 rounded-br-lg text-lg">{{ $book->created_at->translatedFormat('d F Y') }}</p>
-        <p class="bg-white px-3 py-2 rounded-bl-lg text-lg">{{ $book->category->name }}</p>
+        <p class="bg-white px-3 py-2 rounded-br-lg text-lg">{{ $movie->created_at->translatedFormat('d F Y') }}</p>
+        <p class="bg-white px-3 py-2 rounded-bl-lg text-lg">{{ $movie->genre->name }}</p>
       </div>
       <div class="py-2 px-5">
-        <h5 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">{{ $book->title }}
-        </h5>
-        <p class="font-normal text-gray-700 dark:text-gray-400">{{ Str::limit($book->summary, 120) }}</p>
+        <h5 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">{{ $movie->title }}</h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">{{ Str::limit($movie->synopsis, 120) }}</p>
 
         <div class="flex w-full justify-end mt-5">
           {{-- button details --}}
-          <a href="{{ route('books.show', $book->id) }}" class="text-blue-400 hover:text-white border border-blue-400 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-300 dark:text-blue-300 dark:hover:text-white dark:hover:bg-blue-400 dark:focus:ring-blue-900">Detail</a>
+          <a href="{{ route('movies.show', $movie->id) }}" class="text-blue-400 hover:text-white border border-blue-400 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-300 dark:text-blue-300 dark:hover:text-white dark:hover:bg-blue-400 dark:focus:ring-blue-900">Detail</a>
 
-          <a href="{{ route('books.edit', $book->id) }}" class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900">Edit</a>
+          <a href="{{ route('movies.edit', $movie->id) }}" class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900">Edit</a>
 
           <!-- Simpan di bawah button edit -->
-        <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">
+        <form action="{{ route('movies.destroy', $movie->id) }}" method="POST" style="display:inline;">
           @csrf
           @method('DELETE')
-          <button type="submit" onclick="return confirm('Are you sure you want to delete this book?')" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Delete</button>
+          <button type="submit" onclick="return confirm('Are you sure you want to delete this movie?')" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Delete</button>
         </form>
         </div>
       </div>
@@ -90,8 +89,8 @@
                 d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
             </svg>
           </div>
-          <h1 class="mt-3 text-lg text-gray-800 dark:text-white">No books found</h1>
-          <p class="mt-2 text-gray-500 dark:text-gray-400">We couldn't find any books that matched your search.</p>
+          <h1 class="mt-3 text-lg text-gray-800 dark:text-white">No movies found</h1>
+          <p class="mt-2 text-gray-500 dark:text-gray-400">We couldn't find any movies that matched your search.</p>
           <div class="flex items-center mt-4 sm:mx-auto gap-x-3">
             <button
               class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
@@ -100,7 +99,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
 
-              <span>Add a book</span>
+              <span>Add a movie</span>
             </button>
           </div>
         </div>
